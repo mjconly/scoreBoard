@@ -1,0 +1,4 @@
+/* color fa icons on landing page */
+i[class^="fas"]{
+  color: #162129;
+}
