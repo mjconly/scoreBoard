@@ -1,0 +1,17 @@
+<% if (typeof flags !== "undefined") { %>
+  <% for (flag of flags){ %>
+    <div class="alert alert-dismissible alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h5 class="alert-heading">Warning!</h5>
+      <p class="mb-0"><%= flag%></p>
+    </div>
+  <% } %>
+<% } %>
+
+
+<% if (successMsg != "" ){ %>
+  <div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong style="font-weight:bold">Well done! </strong><%= successMsg %>
+  </div>
+<% } %>

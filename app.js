@@ -2,6 +2,8 @@ const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 const path = require("path");
+const flash = require("connect-flash");
+const session = require("express-session");
 
 //Load Enviornment Variables
 require("dotenv").config( { path: path.resolve(__dirname, 'config/.env') });
@@ -24,6 +26,27 @@ app.set("view engine", "ejs");
 
 //Static Files
 app.use(express.static("public"));
+
+//BodyParser
+app.use(express.urlencoded( {extended: false} ));
+
+//Express session
+app.use(session({
+  secret: "secret",
+  resave: true,
+  saveUninitialized: true
+}));
+
+//Connect Flash
+app.use(flash());
+
+//Add Global Flash Variables
+app.use((req, res, next) => {
+  res.locals.successMsg = req.flash("successMsg");
+  res.locals.errorMsg = req.flash("errorMsg");
+  res.locals.error = req.flash("error");
+  next();
+})
 
 //Routes
 app.use("/", require("./routes/index"));
