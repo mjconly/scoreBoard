@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const flash = require("connect-flash");
 const session = require("express-session");
+const passport = require("passport");
 
 //Load Enviornment Variables
 require("dotenv").config( { path: path.resolve(__dirname, 'config/.env') });
@@ -14,6 +15,8 @@ const DB = process.env.DB_URI;
 //Initialize app
 const app = express();
 
+//get userPassport
+require("./passport")(passport);
 
 //Connect to DB
 mongoose.connect(DB, { useNewUrlParser: true })
@@ -36,6 +39,10 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+//Passport MiddleWare
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Connect Flash
 app.use(flash());

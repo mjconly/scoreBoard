@@ -2,8 +2,7 @@
   <% for (flag of flags){ %>
     <div class="alert alert-dismissible alert-warning">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <h5 class="alert-heading">Warning!</h5>
-      <p class="mb-0"><%= flag%></p>
+    <strong style="font-weight:bold">Warning! </strong><%= flag %>
     </div>
   <% } %>
 <% } %>
@@ -13,5 +12,21 @@
   <div class="alert alert-dismissible alert-success">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong style="font-weight:bold">Well done! </strong><%= successMsg %>
+  </div>
+<% } %>
+
+
+<% if (errorMsg != "" ){ %>
+  <div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong style="font-weight:bold">Warning! </strong><%= errorMsg %>
+  </div>
+<% } %>
+
+
+<% if (error != "" ){ %>
+  <div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong style="font-weight:bold">Uh-Oh! </strong><%= error %>
   </div>
 <% } %>
