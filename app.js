@@ -5,6 +5,11 @@ const path = require("path");
 const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
+const csv = require("csvtojson");
+
+
+//Path to csv data
+teamDataPath = path.resolve(__dirname, ("./teamData/teams.csv"))
 
 //Load Enviornment Variables
 require("dotenv").config( { path: path.resolve(__dirname, 'config/.env') });
@@ -18,10 +23,34 @@ const app = express();
 //get userPassport
 require("./passport")(passport);
 
-//Connect to DB
-mongoose.connect(DB, { useNewUrlParser: true })
-  .then(() => console.log("Connected to MongoDB Atlas..."))
-  .catch(err => console.log(err));
+//Connect to DB and add team data if not already in db
+mongoose.connect(DB, {useNewUrlParser: true}, (err, db) => {
+  if (err){
+    console.log(err);
+  }
+  else{
+    //Check to see if team data is in db
+    db.db.listCollections({name: "teams"})
+      .next((err, collection) => {
+        if (err){
+          console.log(err);
+        }
+        else if (collection === null){
+            //team data needs to be added to DB
+            const teamData = csv().fromFile(teamDataPath)
+              .then((teamData) => {
+                const Team = require("./models/Team");
+                Team.insertMany(teamData, (err, res) => {
+                  if (err) throw err;
+                  console.log(`${res.length} items added to teams collection`);
+                })
+              })
+        }
+        console.log("Connected to mongoDb Atlas...")
+    })
+  }
+})
+
 
 //View Engine
 app.use(expressLayouts);
