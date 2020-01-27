@@ -58,6 +58,6 @@ app.use((req, res, next) => {
 //Routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
-
+app.use("/dashboard", require("./routes/dashboard"));
 
 app.listen(PORT, console.log("Server listenting on port 3000"));
