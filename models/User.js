@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Team = require("./Team");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -12,6 +13,21 @@ const UserSchema = new mongoose.Schema({
   password: {
     type:String,
     required: true
+  },
+  nbateams:{
+    type: [Team.schema]
+  },
+  nflteams:{
+    type: [Team.schema]
+  },
+  mlbteams:{
+    type: [Team.schema]
+  },
+  nhlteams:{
+    type: [Team.schema]
+  },
+  pinnedteams:{
+    type: [Team.schema]
   },
   date: {
     type: Date,
