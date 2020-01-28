@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const isAuthenticated = require("../auth").isAuthenticated;
 
+//Used to retrieve team data from db
+const Team = require("../models/Team");
+
 //Get DashBoard Page
 router.get("/home", isAuthenticated, (req, res) => {
   res.render("home", {
@@ -21,9 +24,14 @@ router.get("/myteams", isAuthenticated, (req, res) => {
 
 //Get addteam page
 router.get("/addteam", isAuthenticated, (req, res) =>{
-  res.render("addteam", {
-    name: req.user.name,
-    navlink: req.path.slice(1)
+  Team.find({}, (err, teamData) => {
+    if (err) throw err
+
+    res.render("addteam", {
+      name: req.user.name,
+      navlink: req.path.slice(1),
+      teamData: teamData
+    })
   })
 })
 
