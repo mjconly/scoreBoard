@@ -5,7 +5,12 @@
     <p class="text-muted">Select teams to add to your dashboard</p>
     <form class="iform form-inline" role="form" action="#">
       <div class="from-group">
-        <input class = "form-control" type="text" name="searchTeam" placeholder="Enter Team Name">
+        <input list="teamSelect" class="form-control" type="text" name="searchTeam" placeholder="Enter Team Name">
+        <datalist id="teamSelect">
+        <option value="Raptors">Toronto, Raptors</option>
+        <option value="Celtics">Boston, Celtics</option>
+        <option value="Heat">Miami, Heat</option>  
+        </datalist>
       </div>
       <button class="btn btn-primary" type="submit" name="button">Add</button>
     </form>
