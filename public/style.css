@@ -3,6 +3,10 @@ i[class^="fas"]{
   color: #162129;
 }
 
+.selectable{
+  cursor: pointer;
+}
+
 
 
 /*media query for inline add team form*/

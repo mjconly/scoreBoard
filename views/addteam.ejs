@@ -2,6 +2,7 @@
 <!-- EJS to loop over teamData object and add team to array for specific accordion piece -->
 <% const nba = [] %>
 <% const nfl = [] %>
+<% let idx = 1 %>
 <% for (team of teamData) { %>
   <% if (team.league === "NBA") { %>
     <% nba.push(team) %>
@@ -9,7 +10,7 @@
   else if (team.league === "NFL") { %>
     <% nfl.push(team) %>
   <% }
-   else { 
+   else {
 
    } %>
 <% } %>
@@ -30,13 +31,12 @@
         </button>
       </h2>
     </div>
-
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
       <div class="card-body">
         <div class="d-flex flex-wrap justify-content-center">
           <% for (team of nba) { %>
-          <div class="card card-body bg-secondary w-xs-20" style="max-width: 6rem">
-            <img src="<%=team.logo%>" class="card-img-top" alt="..." >
+          <div class="card card-body bg-secondary selectable w-xs-20" id="nba-select" style="max-width: 6rem">
+            <img id="<%='img' + idx++%>" src="<%=team.logo%>" class="card-img-top" alt="<%=team._id%>">
           </div>
           <% } %>
         </div>
@@ -46,7 +46,7 @@
   <div class="card">
     <div class="card-header bg-secondary" id="headingTwo">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block collapsed text-left"  type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button class="btn btn-link btn-block collapsed text-left" id="nfl-select"  type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           NFL
         </button>
       </h2>
@@ -55,8 +55,8 @@
       <div class="card-body">
         <div class="d-flex flex-wrap justify-content-center">
           <% for (team of nfl) { %>
-          <div class="card card-body bg-secondary w-xs-20" style="max-width: 6rem">
-            <img src="<%=team.logo%>" class="card-img-top" alt="..." >
+          <div class="card card-body bg-secondary selectable w-xs-20" id="nfl-select" style="max-width: 6rem">
+            <img id="<%='img' + idx++%>" src="<%=team.logo%>" class="card-img-top" alt="<%=team._id%>">
           </div>
           <% } %>
         </div>
@@ -78,3 +78,7 @@
     </div>
   </div>
 </div>
+<div id="dialog"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/addTeam.js"></script>

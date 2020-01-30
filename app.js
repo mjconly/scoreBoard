@@ -6,6 +6,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const csv = require("csvtojson");
+const bodyParser = require("body-parser");
 
 
 //Path to csv data
@@ -51,13 +52,18 @@ mongoose.connect(DB, {useNewUrlParser: true}, (err, db) => {
   }
 })
 
+//body parser middle MiddleWare
+//middleware for body parser - for url encoded
+app.use(bodyParser.urlencoded({extended: false}))
+//middleware for body parser - application/json
+app.use(bodyParser.json())
 
 //View Engine
 app.use(expressLayouts);
 app.set("view engine", "ejs");
 
 //Static Files
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 //BodyParser
 app.use(express.urlencoded( {extended: false} ));

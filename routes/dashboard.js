@@ -5,6 +5,7 @@ const isAuthenticated = require("../auth").isAuthenticated;
 //Used to retrieve team data from db
 const Team = require("../models/Team");
 
+
 //Get DashBoard Page
 router.get("/home", isAuthenticated, (req, res) => {
   res.render("home", {
@@ -33,6 +34,37 @@ router.get("/addteam", isAuthenticated, (req, res) =>{
       teamData: teamData
     })
   })
+})
+
+//Post route add team to user DashBoard
+router.post("/addteam/selection", isAuthenticated, (req, res) => {
+  let selectID = req.body.teamId;
+  Team.findById(selectID, (err, team) => {
+    if (err) throw err;
+
+    let league = team.league.toLowerCase() + "teams";
+
+    let i = 0;
+    let found = false;
+    while (i < req.user[league].length && !found){
+      found = req.user[league][i].name === team.name;
+      i += 1;
+    }
+
+    if (found){
+      console.log("Sending fail");
+      res.sendStatus(400);
+    }
+    else {
+      req.user[league].push(team);
+      req.user.save()
+        .then(() => {
+          console.log(`Added ${team.city}  ${team.name} to user dashboard`)
+          res.json({success : "Updated Successfully", status : 200})
+        })
+        .catch(err => console.log(err));
+      }
+    })
 })
 
 
