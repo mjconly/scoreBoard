@@ -7,6 +7,12 @@ i[class^="fas"]{
   cursor: pointer;
 }
 
+[id^="img"]{
+  -webkit-transform: scale(1.5);
+  border: none;
+  opacity: 1;
+}
+
 
 
 /*media query for inline add team form*/

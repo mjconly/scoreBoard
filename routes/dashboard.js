@@ -52,7 +52,7 @@ router.post("/addteam/selection", isAuthenticated, (req, res) => {
     }
 
     if (found){
-      console.log("Sending fail");
+      console.log("Failed to add team, already exists it user " + league);
       res.sendStatus(400);
     }
     else {

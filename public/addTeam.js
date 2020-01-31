@@ -22,6 +22,7 @@ $( window ).on( "load", function() {
   $("#nba-select img").each(() => {
     let addable = document.getElementById("img" + idx++);
     $(addable).on("click", () =>{
+      $(addable).css("border", "1px transparent solid")
       let data = $(addable).attr("alt");
       //ajax post request when a team is added by user to their dashboard
       $.ajax({
@@ -34,9 +35,12 @@ $( window ).on( "load", function() {
         contentType: "application/json",
       })
       .done((response) => {
-        console.log("PASS");
+        // $(addable).css("border", "none")
+        // $(addable).css("opacity", ".35");
+        $(addable).css({"border": "none", "opacity": ".4"})
       })
       .fail((response) => {
+        $(addable).css("border", "none")
         console.log("FAIL")
       })
     })
