@@ -18,7 +18,11 @@ router.get("/home", isAuthenticated, (req, res) => {
 router.get("/myteams", isAuthenticated, (req, res) => {
   res.render("myteams", {
     name: req.user.name,
-    navlink: req.path.slice(1)
+    navlink: req.path.slice(1),
+    nbaSubs: req.user.nbateams,
+    nflSubs: req.user.nflteams,
+    mlbSubs: req.user.mlbteams,
+    nhlSubs: req.user.nhlteams
   });
 })
 

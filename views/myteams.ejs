@@ -1,12 +1,119 @@
+<% let idx = 1 %>
+
 <%- include("./partials/nav") %>
-<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-    <div class="hovereffect">
-        <img class="img-responsive" src="http://placehold.it/350x250" alt="">
-            <div class="overlay">
-                <h2>Effect 13</h2>
-				<p>
-					<a href="#">LINK HERE</a>
-				</p>
-            </div>
+<div class="row mt-5 text-center">
+  <div class="col-xs-12 m-auto">
+    <h3><%= name%>'s Teams</h3>
+    <p class="text-muted">Drop teams from your Dashboard by unsubscribing</p>
+  </div>
+</div>
+<div class="accordion col-sm-8 m-auto" id="accordion-select">
+  <div class="card">
+    <h2 class="mb-0">
+      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        NBA
+        <span id="nbaPill" class="badge badge-primary badge-pill float-right"><%=nbaSubs.length%></span>
+      </button>
+    </h2>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-select">
+      <div class="card-body">
+        <ul class="list-group">
+          <% for (team of nbaSubs) { %>
+            <li id="listItem<%=idx%>" class="list-group-item d-flex justify-content-between align-items-center">
+              <img src="<%=team.logo%>" id="subscribed<%=idx%>" class="img-thumbnail" alt="<%=team._id%>" style="max-width: 7rem">
+              <button id="dropTeam<%=idx++%>" type="button" class="close mb-5" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </li>
+          <% } %>
+          <% if (nbaSubs.length === 0) { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center text-muted">
+              Currenly not subscirbed to any NBA teams
+            </li>
+          <% } %>
+        </ul>
+      </div>
     </div>
+  </div>
+  <div class="card">
+    <h2 class="mb-0">
+      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        NFL
+        <span id="nflPill" class="badge badge-primary badge-pill float-right"><%=nflSubs.length%></span>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-select">
+      <div class="card-body">
+        <ul class="list-group">
+          <% for (team of nflSubs) { %>
+            <li id="listItem<%=idx%>" class="list-group-item d-flex justify-content-between align-items-center">
+              <img src="<%=team.logo%>" id="subscribed<%=idx%>" class="img-thumbnail" alt="<%=team._id%>" style="max-width: 7rem">
+              <button id="dropTeam<%=idx++%>" type="button" class="close mb-5" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </li>
+          <% } %>
+          <% if (nflSubs.length === 0) { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center text-muted">
+              Currenly not subscirbed to any NFL teams
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h2 class="mb-0">
+      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        MLB
+        <span id="mlbPill" class="badge badge-primary badge-pill float-right"><%=mlbSubs.length%></span>
+      </button>
+    </h2>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-select">
+      <div class="card-body">
+        <ul class="list-group">
+          <% for (team of mlbSubs) { %>
+            <li id="listItem<%=idx%>" class="list-group-item d-flex justify-content-between align-items-center">
+              <img src="<%=team.logo%>" id="subscribed<%=idx%>" class="img-thumbnail" alt="<%=team._id%>" style="max-width: 7rem">
+              <button id="dropTeam<%=idx++%>" type="button" class="close mb-5" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </li>
+          <% } %>
+          <% if (mlbSubs.length === 0) { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center text-muted">
+              Currenly not subscirbed to any MLB teams
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h2 class="mb-0">
+      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        NHL
+        <span id="nhlPill" class="badge badge-primary badge-pill float-right"><%=nhlSubs.length%></span>
+      </button>
+    </h2>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion-select">
+      <div class="card-body">
+        <ul class="list-group">
+          <% for (team of nhlSubs) { %>
+            <li id="listItem<%=idx%>" class="list-group-item d-flex justify-content-between align-items-center">
+              <img src="<%=team.logo%>" id="subscribed<%=idx%>" class="img-thumbnail" alt="<%=team._id%>" style="max-width: 7rem">
+              <button id="dropTeam<%=idx++%>" type="button" class="close mb-5" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </li>
+          <% } %>
+          <% if (nhlSubs.length === 0) { %>
+            <li class="list-group-item d-flex justify-content-between align-items-center text-muted">
+              Currenly not subscirbed to any NHL teams
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

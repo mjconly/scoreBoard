@@ -13,7 +13,14 @@ i[class^="fas"]{
   opacity: 1;
 }
 
+[id^="subscribed"]{
+  transform: scale(1.1);
+  border: 0px transparent solid !important;
+}
 
+[id^="dropTeam"]:focus{
+  outline: none;
+}
 
 /*media query for inline add team form*/
 @media (min-width:350px) and (max-width:767px) {
