@@ -76,4 +76,29 @@ router.post("/addteam/selection", isAuthenticated, (req, res) => {
 })
 
 
+//Delete route drop team from user subscription
+router.delete("/dropteam", isAuthenticated, (req, res) => {
+    let dropID = req.body.teamId;
+    let league = req.body.leagueId + "teams";
+
+    Team.findById(dropID, (err, team) => {
+      if (err) throw err;
+
+      if (req.user[league].map((objTeam) => {return objTeam.name}).indexOf(team.name) === -1){
+        console.log("Team was not found in user's list");
+        res.sendStatus(400);
+      }
+      else{
+      req.user[league].pull(team);
+      req.user.save()
+        .then(() => {
+          console.log(`Removed ${team.name} from user`);
+          res.json({success: "Updated Successfully", status: 200})
+        })
+        .catch(err => console.log(err));
+      }
+    })
+})
+
+
 module.exports = router;

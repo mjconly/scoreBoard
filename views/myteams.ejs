@@ -17,7 +17,7 @@
     </h2>
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-select">
       <div class="card-body">
-        <ul class="list-group">
+        <ul id="nba" class="list-group">
           <% for (team of nbaSubs) { %>
             <li id="listItem<%=idx%>" class="list-group-item d-flex justify-content-between align-items-center">
               <img src="<%=team.logo%>" id="subscribed<%=idx%>" class="img-thumbnail" alt="<%=team._id%>" style="max-width: 7rem">
@@ -44,7 +44,7 @@
     </h2>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-select">
       <div class="card-body">
-        <ul class="list-group">
+        <ul id="nfl" class="list-group">
           <% for (team of nflSubs) { %>
             <li id="listItem<%=idx%>" class="list-group-item d-flex justify-content-between align-items-center">
               <img src="<%=team.logo%>" id="subscribed<%=idx%>" class="img-thumbnail" alt="<%=team._id%>" style="max-width: 7rem">
@@ -71,7 +71,7 @@
     </h2>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-select">
       <div class="card-body">
-        <ul class="list-group">
+        <ul id="mlb" class="list-group">
           <% for (team of mlbSubs) { %>
             <li id="listItem<%=idx%>" class="list-group-item d-flex justify-content-between align-items-center">
               <img src="<%=team.logo%>" id="subscribed<%=idx%>" class="img-thumbnail" alt="<%=team._id%>" style="max-width: 7rem">
@@ -98,7 +98,7 @@
     </h2>
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion-select">
       <div class="card-body">
-        <ul class="list-group">
+        <ul id="nhl" class="list-group">
           <% for (team of nhlSubs) { %>
             <li id="listItem<%=idx%>" class="list-group-item d-flex justify-content-between align-items-center">
               <img src="<%=team.logo%>" id="subscribed<%=idx%>" class="img-thumbnail" alt="<%=team._id%>" style="max-width: 7rem">
@@ -117,3 +117,6 @@
     </div>
   </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/userTeams.js"></script>
