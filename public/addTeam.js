@@ -1,18 +1,27 @@
-// require("jsdom").env("", function(err, window) {
-//     if (err) {
-//         console.error(err);
-//         return;
-//     }
-//
-//     //Get bling notation
-//     var $ = require("jquery")(window);
-//
-//
-//
-//
-// });
 
 $( window ).on( "load", function() {
+  //ajax post function for selection
+  const ajaxPostTeam = (team) => {
+    $(team).css("border", "1px transparent solid")
+    let data = $(team).attr("alt");
+    //ajax post request when a team is added by user to their dashboard
+    $.ajax({
+      type:'POST',
+      url: "/dashboard/addteam/selection",
+      dataType: "json",
+      data: JSON.stringify({
+        teamId: data
+      }),
+      contentType: "application/json",
+    })
+    .done((response) => {
+      $(team).css({"border": "none", "opacity": ".4"})
+    })
+    .fail((response) => {
+      $(team).css("border", "none")
+      console.log("FAIL")
+    })
+  }
 
 
   //Loop over each team (nba, nfl, mlb, nhl) and make them addable to users
@@ -21,36 +30,20 @@ $( window ).on( "load", function() {
   let idx = 1;
   $("#nba-select img").each(() => {
     let addable = document.getElementById("img" + idx++);
-    $(addable).on("click", () =>{
-      $(addable).css("border", "1px transparent solid")
-      let data = $(addable).attr("alt");
-      //ajax post request when a team is added by user to their dashboard
-      $.ajax({
-        type:'POST',
-        url: "/dashboard/addteam/selection",
-        dataType: "json",
-        data: JSON.stringify({
-          teamId: data
-        }),
-        contentType: "application/json",
+      $(addable).on("click", () =>{
+        if ($(addable).attr("style").length === 0){
+          ajaxPostTeam(addable)
+        }
       })
-      .done((response) => {
-        // $(addable).css("border", "none")
-        // $(addable).css("opacity", ".35");
-        $(addable).css({"border": "none", "opacity": ".4"})
-      })
-      .fail((response) => {
-        $(addable).css("border", "none")
-        console.log("FAIL")
-      })
-    })
   })
 
   $("#nfl-select img").each(() => {
     let addable = document.getElementById("img" + idx++);
-    $(addable).on("click", () =>{
-      let data = $(addable).attr("alt");
-    })
+      $(addable).on("click", () =>{
+        if ($(addable).attr("style").length === 0){
+          ajaxPostTeam(addable)
+        }
+      })
   })
 
 })

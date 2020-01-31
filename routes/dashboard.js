@@ -31,7 +31,11 @@ router.get("/addteam", isAuthenticated, (req, res) =>{
     res.render("addteam", {
       name: req.user.name,
       navlink: req.path.slice(1),
-      teamData: teamData
+      teamData: teamData,
+      nbaSubs: req.user.nbateams,
+      nflSubs: req.user.nflteams,
+      mlbSubs: req.user.mlbteams,
+      nhlSubs: req.user.nhlteams
     })
   })
 })

@@ -2,6 +2,8 @@
 <!-- EJS to loop over teamData object and add team to array for specific accordion piece -->
 <% const nba = [] %>
 <% const nfl = [] %>
+<% const nbaSet = new Set() %>
+<% const nflSet = new Set() %>
 <% let idx = 1 %>
 <% for (team of teamData) { %>
   <% if (team.league === "NBA") { %>
@@ -13,6 +15,12 @@
    else {
 
    } %>
+<% } %>
+<% for (team of nbaSubs){ %>
+  <% nbaSet.add(team.name) %>
+<% } %>
+<% for (team of nflSubs){ %>
+  <% nflSet.add(team.name) %>
 <% } %>
 
 <%- include("./partials/nav") %>
@@ -36,7 +44,7 @@
         <div class="d-flex flex-wrap justify-content-center">
           <% for (team of nba) { %>
           <div class="card card-body bg-secondary selectable w-xs-20" id="nba-select" style="max-width: 6rem">
-            <img id="<%='img' + idx++%>" src="<%=team.logo%>" class="card-img-top" alt="<%=team._id%>">
+            <img id="<%='img' + idx++%>" src="<%=team.logo%>" style="<%= nbaSet.has(team.name) ? "opacity: .4" : ""%>" class="card-img-top" alt="<%=team._id%>">
           </div>
           <% } %>
         </div>
@@ -56,7 +64,7 @@
         <div class="d-flex flex-wrap justify-content-center">
           <% for (team of nfl) { %>
           <div class="card card-body bg-secondary selectable w-xs-20" id="nfl-select" style="max-width: 6rem">
-            <img id="<%='img' + idx++%>" src="<%=team.logo%>" class="card-img-top" alt="<%=team._id%>">
+            <img id="<%='img' + idx++%>" src="<%=team.logo%>" style="<%= nflSet.has(team.name) ? "opacity: .4" : ""%>" class="card-img-top" alt="<%=team._id%>">
           </div>
           <% } %>
         </div>
