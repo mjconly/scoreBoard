@@ -2,25 +2,38 @@
 <!-- EJS to loop over teamData object and add team to array for specific accordion piece -->
 <% const nba = [] %>
 <% const nfl = [] %>
+<% const mlb = [] %>
+<% const nhl = [] %>
 <% const nbaSet = new Set() %>
 <% const nflSet = new Set() %>
+<% const mlbSet = new Set() %>
+<% const nhlSet = new Set() %>
 <% let idx = 1 %>
 <% for (team of teamData) { %>
   <% if (team.league === "NBA") { %>
     <% nba.push(team) %>
   <% }
-  else if (team.league === "NFL") { %>
+   else if (team.league === "NFL") { %>
     <% nfl.push(team) %>
   <% }
-   else {
-
-   } %>
+   else if (team.league === "MLB") { %>
+     <% mlb.push(team) %>
+   <% }
+   else { %>
+    <% nhl.push(team) %>
+   <% } %>
 <% } %>
 <% for (team of nbaSubs){ %>
   <% nbaSet.add(team.name) %>
 <% } %>
 <% for (team of nflSubs){ %>
   <% nflSet.add(team.name) %>
+<% } %>
+<% for (team of mlbSubs){ %>
+  <% mlbSet.add(team.name) %>
+<% } %>
+<% for (team of nhlSubs){ %>
+  <% nhlSet.add(team.name) %>
 <% } %>
 
 <%- include("./partials/nav") %>
@@ -35,7 +48,7 @@
     <div class="card-header bg-secondary" id="headingOne">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          NBA
+          NBA Teams
         </button>
       </h2>
     </div>
@@ -55,7 +68,7 @@
     <div class="card-header bg-secondary" id="headingTwo">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block collapsed text-left" id="nfl-select"  type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          NFL
+          NFL Teams
         </button>
       </h2>
     </div>
@@ -75,18 +88,45 @@
     <div class="card-header bg-secondary" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block collapsed text-left" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          MLB
+          MLB Teams
         </button>
       </h2>
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-select">
       <div class="card-body">
-
+        <div class="d-flex flex-wrap justify-content-center">
+          <% for (team of mlb) { %>
+          <div class="card card-body bg-secondary selectable w-xs-20" id="nfl-select" style="max-width: 6rem">
+            <img id="<%='img' + idx++%>" src="<%=team.logo%>" style="<%= mlbSet.has(team.name) ? "opacity: .4" : ""%>" class="card-img-top" alt="<%=team._id%>">
+          </div>
+          <% } %>
+        </div>
       </div>
     </div>
   </div>
+  <div class="card">
+    <div class="card-header bg-secondary" id="headingFour">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block collapsed text-left" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          NHL Teams
+        </button>
+      </h2>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion-select">
+      <div class="card-body">
+        <div class="d-flex flex-wrap justify-content-center">
+          <% for (team of nhl) { %>
+          <div class="card card-body bg-secondary selectable w-xs-20" id="nfl-select" style="max-width: 6rem">
+            <img id="<%='img' + idx++%>" src="<%=team.logo%>" style="<%= nhlSet.has(team.name) ? "opacity: .4" : ""%>" class="card-img-top" alt="<%=team._id%>">
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
-<div id="dialog"></div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="/addTeam.js"></script>

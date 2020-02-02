@@ -17,27 +17,29 @@ router.get("/home", isAuthenticated, (req, res) => {
 
 //Load DashBoard
 router.post("/load", isAuthenticated, (req, res) => {
-  let nbaSet = new Set();
-  for (team of req.user.nbateams){
-    nbaSet.add(team.name);
+  let leagueSet = new Set();
+  let league = req.body.league;
+
+  for (team of req.user[`${league}teams`]){
+    leagueSet.add(team.name);
   }
 
-  let nbaMap = new Map();
+  let leagueMap = new Map();
 
   Team.find({})
     .exec((err, items) => {
       if (err) throw err;
 
       for (team of items){
-        nbaMap.set(team.name, team.logo);
+        leagueMap.set(team.name, team.logo);
       }
 
       let response = [];
 
       for (match of req.body.matchArray){
-        if (nbaSet.has(match.name0) || nbaSet.has(match.name1)){
-          match.logo0 = nbaMap.get(match.name0);
-          match.logo1 = nbaMap.get(match.name1);
+        if (leagueSet.has(match.name0) || leagueSet.has(match.name1)){
+          match.logo0 = leagueMap.get(match.name0);
+          match.logo1 = leagueMap.get(match.name1);
           response.push(match);
         }
       }
