@@ -18,6 +18,16 @@ $(document).ready(() => {
       $(teamList).remove();
       let val = $(pill).html();
       $(pill).text(val - 1);
+      if ((val - 1) === 0){
+        let updateLeague = leagueList.substring(0,3);
+        $(`#${updateLeague}`).append(
+          `
+          <li class="list-group-item d-flex justify-content-between align-items-center text-muted">
+            Currenly not subscirbed to any ${updateLeague.toUpperCase()} teams
+          </li>
+          `
+        )
+      }
     })
     .fail((response) => {
       console.log("Could not remove request item");

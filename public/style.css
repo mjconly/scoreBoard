@@ -50,6 +50,7 @@ i[class^="fas"]{
 .team-line-time{
   display: flex;
   justify-content: center;
+  padding-left: 10px;
 }
 
 img{

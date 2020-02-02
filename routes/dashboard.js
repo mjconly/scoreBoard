@@ -36,8 +36,8 @@ router.post("/load", isAuthenticated, (req, res) => {
 
       for (match of req.body.matchArray){
         if (nbaSet.has(match.name0) || nbaSet.has(match.name1)){
-          match.name0 = nbaMap.get(match.name0);
-          match.name1 = nbaMap.get(match.name1);
+          match.logo0 = nbaMap.get(match.name0);
+          match.logo1 = nbaMap.get(match.name1);
           response.push(match);
         }
       }
