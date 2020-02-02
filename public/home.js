@@ -3,7 +3,7 @@ $(document).ready(() => {
 
 
   let parser = new DOMParser();
-  $.get("https://www.cbssports.com/nba/scoreboard/", (response) => {
+  $.get("https://www.cbssports.com/nba/scoreboard/?_=" + new Date().getTime(), (response) => {
     let parsed = parser.parseFromString(response, "text/html");
 
 
