@@ -10,8 +10,46 @@ const Team = require("../models/Team");
 router.get("/home", isAuthenticated, (req, res) => {
   res.render("home", {
     name: req.user.name,
-    navlink: req.path.slice(1)
+    navlink: req.path.slice(1),
   });
+})
+
+
+//Load DashBoard
+router.post("/load", isAuthenticated, (req, res) => {
+  let nbaSet = new Set();
+  for (team of req.user.nbateams){
+    nbaSet.add(team.name);
+  }
+
+  let nbaMap = new Map();
+
+  Team.find({})
+    .exec((err, items) => {
+      if (err) throw err;
+
+      for (team of items){
+        nbaMap.set(team.name, team.logo);
+      }
+
+      let response = [];
+
+      for (match of req.body.matchArray){
+        if (nbaSet.has(match.name0) || nbaSet.has(match.name1)){
+          match.name0 = nbaMap.get(match.name0);
+          match.name1 = nbaMap.get(match.name1);
+          response.push(match);
+        }
+      }
+
+      if (response.length > 0){
+        res.json(response);
+      }
+      else{
+        res.sendStatus(400);
+      }
+
+    })
 })
 
 //Get myteams page

@@ -22,18 +22,44 @@ i[class^="fas"]{
   outline: none;
 }
 
-/*media query for inline add team form*/
-@media (min-width:350px) and (max-width:767px) {
-    .iform .form-control {
-        display: inline-block;
-        width: auto;
-        margin: 0;
-    }
-    .iform .form-group .autocomplete {
-        display: inline-block;
-        width: auto;
-        margin-bottom: 0;
-        vertical-align: middle;
-    }
+.flex-card-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 
+
+.match-card{
+  width: 350px;
+  height: 150px;
+  border:1px red solid;
+  display: inline-block;
+  margin-bottom: 1em;
+  text-align: center;
+  border: 1px #c9c9c9 solid;
+}
+
+.team-line{
+  padding: 4px 5px 0px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-line-time{
+  display: flex;
+  justify-content: center;
+}
+
+img{
+  max-width: 6em;
+}
+
+.btn-link:focus{
+  text-decoration: none !important;
+}
+
+.btn-link:hover{
+  text-decoration: underline !important;
 }

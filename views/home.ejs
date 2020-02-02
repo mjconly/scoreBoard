@@ -1,4 +1,38 @@
 <%- include("./partials/nav") %>
-<div class="row mt-5">
-  <h1>My DashBoard </h1>
+<div class="row mt-5 text-center">
+  <div class="col-xs-12 m-auto">
+    <h3><%= name%>'s Scores</h3>
+    <p class="text-muted">View live scores from your favorite teams</p>
+  </div>
 </div>
+<div class="accordion col-sm-12 m-auto" id="accordion-select">
+  <div class="card">
+    <h2 class="mb-0">
+      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        NBA Scores
+      </button>
+    </h2>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-select">
+      <div id="nbaBuild" class="flex-card-container">
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/home.js"></script>
+
+
+<!-- <div class="match-card">
+  <div class="team-line">
+      <img src="http://content.sportslogos.net/logos/6/237/thumbs/uig7aiht8jnpl1szbi57zzlsh.gif">
+      <h4>SCORE</h4>
+  </div>
+  <div class="team-line">
+    <img src="http://content.sportslogos.net/logos/6/237/thumbs/uig7aiht8jnpl1szbi57zzlsh.gif">
+    <h4>SCORE</h4>
+  </div>
+</div> -->
