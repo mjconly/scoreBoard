@@ -7,7 +7,7 @@ the users account, they can navigate to thier dashboard for live score
 updates during game time.
 
 ## View
-To view the application click ![here](https://live-score-board.herokuapp.com/)
+To view the application click [here](https://live-score-board.herokuapp.com/)
 
 ## Requirements
 1. Node
