@@ -17,12 +17,12 @@ To view the application click ![here](https://live-score-board.herokuapp.com/)
 1. Download project folder
 2. From the terminal navigate to <code> scoreBoard/ </code>
 3. Install dependencies with <code> $ npm install </code>
-4. **Note in the app.js file the enviornment variables PORT and
+4. **Note** in the app.js file the enviornment variables PORT and
 DB_URI must be assigned. To do this create a config folder in 
 the root directiory of the project. Add a .env file to the config
-directory, and create PORT and DB_URI variables. 
-<code> PORT=<port number> <code>
-<code> DB_URI=<your mongodb Atlas uri with password><code>
+directory, and create PORT and DB_URI variables:
+<br><code> PORT=\<port number\> </code>
+<br><code> DB_URI=\<your mongodb Atlas uri with password\> </code>
       
 ## Run
 1. From the terminal navigate to <code> scoreBoard/ </code>
