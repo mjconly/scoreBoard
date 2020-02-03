@@ -6,7 +6,7 @@ teams to follow from the NBA, NFL, NHL, MLB. Once a team is added to
 the users account, they can navigate to thier dashboard for live score
 updates during game time.
 
-##View
+## View
 To view the application click ![here](https://live-score-board.herokuapp.com/)
 
 ## Requirements
@@ -22,7 +22,7 @@ DB_URI must be assigned. To do this create a config folder in
 the root directiory of the project. Add a .env file to the config
 directory, and create PORT and DB_URI variables. 
 <code> PORT=<port number> <code>
-<code> DB_URI=<your mongodb Atlas uri with password>
+<code> DB_URI=<your mongodb Atlas uri with password><code>
       
 ## Run
 1. From the terminal navigate to <code> scoreBoard/ </code>
