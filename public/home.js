@@ -6,6 +6,10 @@ $(document).ready(() => {
   const nhlIntervals = [];
   let parser = new DOMParser();
 
+
+  let isMobile = window.matchMedia("only screen and (max-width: 500px)").matches;
+
+
   //parse data from cbssports
   const parseHTMLCBSSports = (nodes) => {
     let rowBody;
@@ -14,6 +18,7 @@ $(document).ready(() => {
       let match = {};
       let pos = 0;
       rowBody = node.childNodes[1].childNodes[1];
+      console.log(rowBody);
       for (team of rowBody.children){
         match[`name${pos}`] = $(team.children[0]).find(".team")[0].innerHTML;
         match[`score${pos}`] = team.children[team.children.length - 1].innerHTML;
